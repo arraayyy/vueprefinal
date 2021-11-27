@@ -1,10 +1,20 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <nav>
+    <div class="nav nav-tabs justify-content-center mb-4" id="nav-tab" role="tablist">
+      <router-link :class="{active: $route.name === 'Home'}" to="/">Home</router-link> |
+      <router-link :class="{active: $route.name === 'Cart'}" to="/cart">Cart</router-link>
+    </div>
+  </nav>
   <router-view/>
 </template>
+
+<script> 
+  export default {
+    mounted() {
+      this.$store.commit('updatingCart')
+    }
+  }
+</script>
 
 <style>
 #app {
@@ -15,16 +25,27 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+html,body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+body {
+  background-color: black 
+} 
+
+a {
+  font-weight: bold;
+  color: darkgray;
+  text-decoration: none;
+  margin: 0 5px 0 5px;
+  font-size: 1.25rem;
+  
 }
 
-#nav a {
-  font-weight: bold;
+a:active {
   color: #2c3e50;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+
 </style>
